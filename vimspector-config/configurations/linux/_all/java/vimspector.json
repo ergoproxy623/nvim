@@ -1,24 +1,42 @@
 {
-  "adapters": {
-    "java-debug-server": {
-      "name": "vscode-java",
-      "port": "${AdapterPort}"
-    }
-  },
   "configurations": {
-    "Java Attach": {
-      "default": true,
-      "adapter": "java-debug-server",
+    "Vim - run a test": {
+      "adapter": "vscode-cpptools",
       "configuration": {
-        "request": "attach",
-        "host": "127.0.0.1",
-        "port": "5005"
-      },
-      "breakpoints": {
-        "exception": {
-          "caught": "N",
-          "uncaught": "N"
+        "type":    "cppdbg",
+        "request": "launch",
+        "program": "${workspaceRoot}/src/vim",
+        "args": [
+          "-f",
+          "-u", "unix.vim",
+          "-U", "NONE",
+          "--noplugin",
+          "--not-a-term",
+          "-S", "runtest.vim",
+          "${Test}.vim"
+        ],
+        "cwd": "${workspaceRoot}/src/testdir",
+        "environment": [
+          { "name": "VIMRUNTIME", "value": "${workspaceRoot}/runtime" }
+        ],
+        "externalConsole": true,
+        "stopAtEntry": true,
+        "MIMode": "lldb",
+        "logging": {
+          "engineLogging": false
         }
+      }
+    },
+    "ts": {
+      "adapter": "vscode-cpptools",
+       "configuration": {
+       "type": "chrome",
+       "request": "launch",
+       "name": "Launch Chrome against localhost",
+       "url": "http://localhost:4200",
+       "webRoot": "${workspaceFolder}",
+       "externalConsole": true,
+       "stopAtEntry": true,
       }
     }
   }

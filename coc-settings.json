@@ -35,13 +35,9 @@
 
   // autoformat
   "coc.preferences.formatOnSaveFiletypes": [
-    "css",
     "markdown",
-    "javascript",
     "graphql",
-    "html",
     "yaml",
-    "json",
     "python",
     "java"
   ],
