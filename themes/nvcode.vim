@@ -7,6 +7,7 @@ colorscheme nvcode
 " colorscheme onedark
 " colorscheme TSnazzy
 " colorscheme aurora
+" colorscheme gruvbox
 
 
 " checks if your terminal has 24-bit color support
