@@ -29,7 +29,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'ChristianChiarulli/vscode-easymotion'
     Plug 'machakann/vim-highlightedyank'
   else
-
+    " Rest
+    Plug 'diepm/vim-rest-console'
     " Easymotion
     Plug 'easymotion/vim-easymotion'
     " Surround
