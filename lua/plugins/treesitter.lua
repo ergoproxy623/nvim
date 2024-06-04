@@ -10,7 +10,15 @@ return {
     opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
       "lua",
       "vim",
+      "css", 
+      "html"
       -- add more arguments for adding more treesitter parsers
     })
+    opts.rainbow = require('astrocore').list_insert_unique(opts.rainbow, {
+        enable = true,
+        disable = { "html" },
+        extended_mode = false,
+        max_file_lines = nil,
+    }) 
   end,
 }

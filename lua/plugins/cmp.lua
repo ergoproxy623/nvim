@@ -20,6 +20,7 @@ return { -- override nvim-cmp plugin
         { name = "buffer", priority = 500 },
         { name = "path", priority = 750 },
         { name = "emoji", priority = 450 }, -- add new source
+        { name = "html-css", priority = 500 },
         { name = "calc", priority = 10 },
         {
           name = "dictionary",
@@ -32,7 +33,7 @@ return { -- override nvim-cmp plugin
       { name = "color_names" },
       { name = "bootstrap" },
       { name = "fonts", priority = 10 },
-      { name = "html-css", priority = 10 },
+      
       {
         name = "scss",
         option = {
@@ -59,5 +60,13 @@ return { -- override nvim-cmp plugin
         -- },
       }
     )
+    opts.formatting = {
+        format = function(entry, vim_item)
+            if entry.source.name == "html-css" then
+                vim_item.menu = entry.completion_item.menu
+            end
+            return vim_item
+        end
+    }
   end,
 }
