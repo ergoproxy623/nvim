@@ -29,7 +29,8 @@ return {
         number = true, -- sets vim.opt.number
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-        wrap = false, -- sets vim.opt.wrap
+        wrap = false, -- sets vim.opt.wrap,
+        scrolloff = 10
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)

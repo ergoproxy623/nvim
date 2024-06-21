@@ -21,6 +21,7 @@ return { -- override nvim-cmp plugin
         { name = "path", priority = 750 },
         { name = "emoji", priority = 450 }, -- add new source
         { name = "html-css", priority = 500 },
+        { name = "angular-selectors", priority = 500 },
         { name = "calc", priority = 10 },
         {
           name = "dictionary",

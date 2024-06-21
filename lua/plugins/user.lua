@@ -14,19 +14,20 @@ return {
   "gbprod/yanky.nvim",
   "neoclide/npm.nvim",
   "tpope/vim-unimpaired",
+  'nvim-treesitter/playground',
+  "BlackLight/nvim-http",
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
   },
-  {
-  "vhyrro/luarocks.nvim",
-   priority = 1000,
-   config = true,
-   opts = {
-    rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
-   }
-  },
+  -- {
+  --   "vhyrro/luarocks.nvim",
+  --    branch = "go-away-python",
+  --    config = function()
+  --     require("luarocks").setup({})
+  --    end,
+  -- },
   -- {
   -- "rest-nvim/rest.nvim",
   --  rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" },
@@ -34,6 +35,16 @@ return {
   --    require("rest-nvim").setup()
   --  end,
   -- },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("refactoring").setup()
+    end,
+  },
   {
     "David-Kunz/cmp-npm",
     dependencies = {
@@ -43,6 +54,16 @@ return {
     config = function()
      require('cmp-npm').setup({})
     end
+  },
+  {
+    "antosha417/nvim-lsp-file-operations",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-neo-tree/neo-tree.nvim",
+    },
+    config = function()
+      require("lsp-file-operations").setup()
+    end,
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -150,6 +171,23 @@ return {
       -- add more custom luasnip configuration such as filetype extend or custom snippets
       local luasnip = require "luasnip"
       luasnip.filetype_extend("javascript", { "javascriptreact" })
+    end,
+  },
+  {
+    "antosha417/nvim-lsp-file-operations",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-neo-tree/neo-tree.nvim",
+    },
+    config = function()
+      require("lsp-file-operations").setup()
+    end,
+  },
+  {
+  "max397574/colortils.nvim",
+    cmd = "Colortils",
+    config = function()
+      require("colortils").setup()
     end,
   }
 }

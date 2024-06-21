@@ -49,6 +49,16 @@ return {
         filetypes = {
            "typescript", "html", "typescriptreact", "typescript.tsx", "angular.html", "css", "scss", "sass"
         }
+      },
+      emmet_ls = {
+        filetypes = {
+            "html", "angular.html", "css", "scss", "sass"
+        }
+      },
+      emmet_language_server = {
+        filetypes = {
+            "html", "angular.html", "css", "scss", "sass"
+        }
       }
     },
     -- customize how language servers are attached
