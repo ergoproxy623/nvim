@@ -15,7 +15,7 @@ return {
   "neoclide/npm.nvim",
   "tpope/vim-unimpaired",
   'nvim-treesitter/playground',
-  "BlackLight/nvim-http",
+  "ergoproxy623/nvim-http",
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",

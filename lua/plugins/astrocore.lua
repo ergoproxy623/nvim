@@ -30,7 +30,8 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false, -- sets vim.opt.wrap,
-        scrolloff = 10
+        scrolloff = 10,
+        colorcolumn = "140",
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
