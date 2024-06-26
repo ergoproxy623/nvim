@@ -16,6 +16,12 @@ return {
   "tpope/vim-unimpaired",
   'nvim-treesitter/playground',
   "ergoproxy623/nvim-http",
+  "tpope/vim-surround",
+  { 
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {}
+  },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
