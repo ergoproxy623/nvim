@@ -17,30 +17,16 @@ return {
   'nvim-treesitter/playground',
   "ergoproxy623/nvim-http",
   "tpope/vim-surround",
-  { 
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {}
-  },
+  -- { 
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   main = "ibl",
+  --   opts = {}
+  -- },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
   },
-  -- {
-  --   "vhyrro/luarocks.nvim",
-  --    branch = "go-away-python",
-  --    config = function()
-  --     require("luarocks").setup({})
-  --    end,
-  -- },
-  -- {
-  -- "rest-nvim/rest.nvim",
-  --  rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" },
-  --  config = function()
-  --    require("rest-nvim").setup()
-  --  end,
-  -- },
   {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {
