@@ -3,6 +3,7 @@ return { -- override nvim-cmp plugin
   dependencies = {
     "hrsh7th/cmp-emoji", -- add cmp source as dependency of cmp
     "jcha0713/cmp-tw2css",
+    "David-Kunz/cmp-npm",
     "Jezda1337/cmp_bootstrap",
     "amarakon/nvim-cmp-fonts",
     "roginfarrer/cmp-css-variables",
@@ -23,6 +24,7 @@ return { -- override nvim-cmp plugin
         { name = "html-css", priority = 500 },
         { name = "angular-selectors", priority = 500 },
         { name = "calc", priority = 10 },
+        {name= "npm", priority = 10},
         {
           name = "dictionary",
           keyword_length = 2,
