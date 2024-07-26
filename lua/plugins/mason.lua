@@ -1,4 +1,3 @@
-
 -- Customize Mason plugins
 
 ---@type LazySpec
@@ -31,88 +30,82 @@ return {
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = {
       ensure_installed = {
-        "python", 'chrome'
+        "python",
+        "chrome",
         -- add more arguments for adding more debuggers
       },
       handlers = {
-       chrome = function(source_name)
-        local dap = require("dap")
-        local exts = {
-        "javascript",
-        "typescript",
-        }
-        dap.adapters.js = {
-          debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter",
-         debugger_cmd = { "js-debug-adapter" },
-          adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
-        }
-        dap.adapters.chrome = {
-          type = "executable",
-          command = "node",
-          args = { "/home/ergoproxy13/.local/share/nvim/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js"} -- TODO adjust
-        }
-        dap.adapters.firefox = {
-          type = "executable",
-          command = "node",
-          args = { "/home/ergoproxy13/.local/share/nvim/mason/packages/firefox-debug-adapter/dist/adapter.bundle.js"} -- TODO adjust
-        }
+        chrome = function()
+          local dap = require "dap"
+          local exts = {
+            "javascript",
+            "typescript",
+          }
+          dap.adapters.chrome = {
+            type = "executable",
+            command = "node",
+            args = { "/home/ergoproxy13/.local/share/nvim/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js" }, -- TODO adjust
+          }
+          dap.adapters.firefox = {
+            type = "executable",
+            command = "node",
+            args = { "/home/ergoproxy13/.local/share/nvim/mason/packages/firefox-debug-adapter/dist/adapter.bundle.js" }, -- TODO adjust
+          }
 
-        for i, ext in ipairs(exts) do
-  dap.configurations[ext] = {
-    {  
-    name = 'Debug with Firefox',
-    type = 'firefox',
-    request = 'launch',
-    reAttach = true,
-    url = 'http://localhost:4200',
-    webRoot = '${workspaceFolder}',
-    timeout = 90000,
-    firefoxExecutable = '/snap/bin/firefox',
-    tmpDir = '/home/ergoproxy13/Documents/faketmp',
-  },
-   {
-      type = "chrome",
-      request = "launch",
-      name = "Launch Chrome with \"localhost\"",
-      url = function()
-        local co = coroutine.running()
-        return coroutine.create(function()
-          vim.ui.input({ prompt = 'Enter URL: ', default = 'http://localhost:4200' }, function(url)
-            if url == nil or url == '' then
-              return
-            else
-              coroutine.resume(co, url)
-            end
-          end)
-        end)
-      end,
-      webRoot = vim.fn.getcwd(),
-      timeout = 90000,
-      protocol = 'inspector',
-      sourceMaps = true,
-      userDataDir = false,
-      resolveSourceMapLocations = {
-        "${workspaceFolder}/**",
-        "!**/node_modules/**",
-      }
-    },
-    {
-      type = "chrome",
-      request = "attach",
-      name = "Attach Program (chrome, select port)",
-      program = "${file}",
-      cwd = vim.fn.getcwd(),
-      sourceMaps = true,
-      protocol = 'inspector',
-      port = function()
-        return vim.fn.input("Select port: ", 9222)
-      end,
-      webRoot = "${workspaceFolder}",
-    }
-  }
-end
-      end,
-    },
+          for i, ext in ipairs(exts) do
+            dap.configurations[ext] = {
+              {
+                name = "Debug with Firefox",
+                type = "firefox",
+                request = "launch",
+                reAttach = true,
+                url = "http://localhost:4200",
+                webRoot = "${workspaceFolder}",
+                timeout = 90000,
+                firefoxExecutable = "/snap/bin/firefox",
+                tmpDir = "/home/ergoproxy13/Documents/faketmp",
+              },
+              {
+                type = "chrome",
+                request = "launch",
+                name = 'Launch Chrome with "localhost"',
+                url = function()
+                  local co = coroutine.running()
+                  return coroutine.create(function()
+                    vim.ui.input({ prompt = "Enter URL: ", default = "http://localhost:4200" }, function(url)
+                      if url == nil or url == "" then
+                        return
+                      else
+                        coroutine.resume(co, url)
+                      end
+                    end)
+                  end)
+                end,
+                webRoot = vim.fn.getcwd(),
+                timeout = 90000,
+                protocol = "inspector",
+                sourceMaps = true,
+                userDataDir = false,
+                resolveSourceMapLocations = {
+                  "${workspaceFolder}/**",
+                  "!**/node_modules/**",
+                },
+              },
+              {
+                type = "chrome",
+                request = "attach",
+                name = "Attach Program (chrome, select port)",
+                program = "${file}",
+                cwd = vim.fn.getcwd(),
+                sourceMaps = true,
+                protocol = "inspector",
+                port = function() return vim.fn.input("Select port: ", 9222) end,
+                webRoot = "${workspaceFolder}",
+              },
+            }
+          end
+        end,
+      },
     },
   },
 }
