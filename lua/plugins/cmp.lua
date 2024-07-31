@@ -36,17 +36,6 @@ return { -- override nvim-cmp plugin
       { name = "color_names" },
       { name = "bootstrap" },
       { name = "fonts", priority = 10 },
-      
-      {
-        name = "scss",
-        option = {
-          triggers = { "&" }, -- default value
-          extension = ".scss", -- default value
-          pattern = [=[\%(\s\|^\)\zs\$[[:alnum:]_\-0-9]*:\?]=], -- default value
-          folders = { "/src" },
-        },
-      },
-      { name = "sass-variables" },
       { name = "css-variables" },
       {
         name = "cmp_yanky",
