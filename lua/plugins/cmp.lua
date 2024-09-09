@@ -60,5 +60,10 @@ return { -- override nvim-cmp plugin
             return vim_item
         end
     }
+    return require("astrocore").extend_tbl(opts, {
+          mapping = {
+            ["<C-x>"] = cmp.mapping.select_next_item(),
+          },
+        })
   end,
 }

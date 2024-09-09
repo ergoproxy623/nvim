@@ -34,6 +34,7 @@ return {
         wrap = false, -- sets vim.opt.wrap,
         scrolloff = 10,
         colorcolumn = "140",
+        pumblend = 30
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
