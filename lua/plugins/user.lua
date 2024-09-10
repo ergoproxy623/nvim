@@ -17,7 +17,6 @@ return {
   'nvim-treesitter/playground',
   "ergoproxy623/nvim-http",
   "tpope/vim-surround",
-  'MunifTanjim/eslint.nvim',
 --   {
 --     "Isrothy/neominimap.nvim",
 --     enabled = true,
