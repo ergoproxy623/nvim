@@ -9,7 +9,7 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "lua_ls", "angularls", "cssls", "css_variables", "emmet_ls", "eslint@4.8.0", "html", "somesass_ls", "tsserver"
+        "lua_ls", "angularls", "cssls", "css_variables", "emmet_ls", "eslint@4.8.0", "html", "somesass_ls", "vtsls"
         -- add more arguments for adding more language servers
       })
     end,
