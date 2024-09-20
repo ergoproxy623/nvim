@@ -14,40 +14,40 @@ return {
   "gbprod/yanky.nvim",
   "neoclide/npm.nvim",
   "tpope/vim-unimpaired",
-  'nvim-treesitter/playground',
+  "nvim-treesitter/playground",
   "ergoproxy623/nvim-http",
   "tpope/vim-surround",
---   {
---     "Isrothy/neominimap.nvim",
---     enabled = true,
---     lazy = false, -- NOTE: NO NEED to Lazy load
---     -- Optional
---     keys = {
---         { "<leader>nt", "<cmd>Neominimap toggle<cr>", desc = "Toggle minimap" },
---         { "<leader>no", "<cmd>Neominimap on<cr>", desc = "Enable minimap" },
---         { "<leader>nc", "<cmd>Neominimap off<cr>", desc = "Disable minimap" },
---         { "<leader>nf", "<cmd>Neominimap focus<cr>", desc = "Focus on minimap" },
---         { "<leader>nu", "<cmd>Neominimap unfocus<cr>", desc = "Unfocus minimap" },
---         { "<leader>ns", "<cmd>Neominimap toggleFocus<cr>", desc = "Toggle focus on minimap" },
---         { "<leader>nwt", "<cmd>Neominimap winToggle<cr>", desc = "Toggle minimap for current window" },
---         { "<leader>nwr", "<cmd>Neominimap winRefresh<cr>", desc = "Refresh minimap for current window" },
---         { "<leader>nwo", "<cmd>Neominimap winOn<cr>", desc = "Enable minimap for current window" },
---         { "<leader>nwc", "<cmd>Neominimap winOff<cr>", desc = "Disable minimap for current window" },
---         { "<leader>nbt", "<cmd>Neominimap bufToggle<cr>", desc = "Toggle minimap for current buffer" },
---         { "<leader>nbr", "<cmd>Neominimap bufRefresh<cr>", desc = "Refresh minimap for current buffer" },
---         { "<leader>nbo", "<cmd>Neominimap bufOn<cr>", desc = "Enable minimap for current buffer" },
---         { "<leader>nbc", "<cmd>Neominimap bufOff<cr>", desc = "Disable minimap for current buffer" },
---     },
---     init = function()
---         vim.opt.wrap = false -- Recommended
---         vim.opt.sidescrolloff = 36 -- It's recommended to set a large value
---         ---@type Neominimap.UserConfig
---         vim.g.neominimap = {
---             auto_enable = true,
---         }
---     end,
--- },
-  -- { 
+  --   {
+  --     "Isrothy/neominimap.nvim",
+  --     enabled = true,
+  --     lazy = false, -- NOTE: NO NEED to Lazy load
+  --     -- Optional
+  --     keys = {
+  --         { "<leader>nt", "<cmd>Neominimap toggle<cr>", desc = "Toggle minimap" },
+  --         { "<leader>no", "<cmd>Neominimap on<cr>", desc = "Enable minimap" },
+  --         { "<leader>nc", "<cmd>Neominimap off<cr>", desc = "Disable minimap" },
+  --         { "<leader>nf", "<cmd>Neominimap focus<cr>", desc = "Focus on minimap" },
+  --         { "<leader>nu", "<cmd>Neominimap unfocus<cr>", desc = "Unfocus minimap" },
+  --         { "<leader>ns", "<cmd>Neominimap toggleFocus<cr>", desc = "Toggle focus on minimap" },
+  --         { "<leader>nwt", "<cmd>Neominimap winToggle<cr>", desc = "Toggle minimap for current window" },
+  --         { "<leader>nwr", "<cmd>Neominimap winRefresh<cr>", desc = "Refresh minimap for current window" },
+  --         { "<leader>nwo", "<cmd>Neominimap winOn<cr>", desc = "Enable minimap for current window" },
+  --         { "<leader>nwc", "<cmd>Neominimap winOff<cr>", desc = "Disable minimap for current window" },
+  --         { "<leader>nbt", "<cmd>Neominimap bufToggle<cr>", desc = "Toggle minimap for current buffer" },
+  --         { "<leader>nbr", "<cmd>Neominimap bufRefresh<cr>", desc = "Refresh minimap for current buffer" },
+  --         { "<leader>nbo", "<cmd>Neominimap bufOn<cr>", desc = "Enable minimap for current buffer" },
+  --         { "<leader>nbc", "<cmd>Neominimap bufOff<cr>", desc = "Disable minimap for current buffer" },
+  --     },
+  --     init = function()
+  --         vim.opt.wrap = false -- Recommended
+  --         vim.opt.sidescrolloff = 36 -- It's recommended to set a large value
+  --         ---@type Neominimap.UserConfig
+  --         vim.g.neominimap = {
+  --             auto_enable = true,
+  --         }
+  --     end,
+  -- },
+  -- {
   --   "lukas-reineke/indent-blankline.nvim",
   --   main = "ibl",
   --   opts = {}
@@ -63,9 +63,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
-    config = function()
-      require("refactoring").setup({})
-    end,
+    config = function() require("refactoring").setup {} end,
   },
   {
     "David-Kunz/cmp-npm",
@@ -73,9 +71,11 @@ return {
       "nvim-lua/plenary.nvim",
     },
     ft = "json",
-    config = function()
-     require('cmp-npm').setup({})
-    end
+    config = function() require("cmp-npm").setup {} end,
+  },
+  {
+    "johmsalas/text-case.nvim",
+    config = function() require("textcase").setup {} end,
   },
   {
     "antosha417/nvim-lsp-file-operations",
@@ -83,9 +83,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-neo-tree/neo-tree.nvim",
     },
-    config = function()
-      require("lsp-file-operations").setup()
-    end,
+    config = function() require("lsp-file-operations").setup() end,
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -135,45 +133,44 @@ return {
       return opts
     end,
   },
-  {"Pocco81/auto-save.nvim", 
-        config = function()
-       require("auto-save").setup {
+  {
+    "Pocco81/auto-save.nvim",
+    config = function()
+      require("auto-save").setup {
         enabled = false, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
         execution_message = {
           message = function() -- message to print on save
-        return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
-    end,
-    dim = 0.18, -- dim the color of `message`
-    cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
-  },
-    trigger_events = {"InsertLeave", "FocusLost"}, -- vim events that trigger auto-save. See :h events
-  -- function that determines whether to save the current buffer or not
-  -- return true: if buffer is ok to be saved
-  -- return false: if it's not ok to be saved
-  condition = function(buf)
-    local fn = vim.fn
-    local utils = require("auto-save.utils.data")
+            return ("AutoSave: saved at " .. vim.fn.strftime "%H:%M:%S")
+          end,
+          dim = 0.18, -- dim the color of `message`
+          cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+        },
+        trigger_events = { "InsertLeave", "FocusLost" }, -- vim events that trigger auto-save. See :h events
+        -- function that determines whether to save the current buffer or not
+        -- return true: if buffer is ok to be saved
+        -- return false: if it's not ok to be saved
+        condition = function(buf)
+          local fn = vim.fn
+          local utils = require "auto-save.utils.data"
 
-    if
-      fn.getbufvar(buf, "&modifiable") == 1 and
-      utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
-      return true -- met condition(s), can save
-    end
-    return false -- can't save
-  end,
-    write_all_buffers = true, -- write all buffers when the current one meets `condition`
-    debounce_delay = 135, -- saves the file at most every `debounce_delay` milliseconds
-    callbacks = { -- functions to be executed at different intervals
-    enabling = nil, -- ran when enabling auto-save
-    disabling = nil, -- ran when disabling auto-save
-    before_asserting_save = nil, -- ran before checking `condition`
-    before_saving = nil, -- ran before doing the actual save
-    after_saving = nil -- ran after doing the actual save
-        }
+          if fn.getbufvar(buf, "&modifiable") == 1 and utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
+            return true -- met condition(s), can save
+          end
+          return false -- can't save
+        end,
+        write_all_buffers = true, -- write all buffers when the current one meets `condition`
+        debounce_delay = 135, -- saves the file at most every `debounce_delay` milliseconds
+        callbacks = { -- functions to be executed at different intervals
+          enabling = nil, -- ran when enabling auto-save
+          disabling = nil, -- ran when disabling auto-save
+          before_asserting_save = nil, -- ran before checking `condition`
+          before_saving = nil, -- ran before doing the actual save
+          after_saving = nil, -- ran after doing the actual save
+        },
       }
-      end,
-       lazy = false
-      },
+    end,
+    lazy = false,
+  },
   {
     "rafamadriz/friendly-snippets",
     config = function()
@@ -201,15 +198,11 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-neo-tree/neo-tree.nvim",
     },
-    config = function()
-      require("lsp-file-operations").setup()
-    end,
+    config = function() require("lsp-file-operations").setup() end,
   },
   {
-  "max397574/colortils.nvim",
+    "max397574/colortils.nvim",
     cmd = "Colortils",
-    config = function()
-      require("colortils").setup()
-    end,
-  }
+    config = function() require("colortils").setup() end,
+  },
 }
