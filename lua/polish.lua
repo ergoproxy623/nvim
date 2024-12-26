@@ -1,6 +1,6 @@
-    -- vim.api.nvim_create_autocmd("VimEnter", {
-    --   command = "set nornu nonu | Neotree toggle",
-    -- })
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   command = "set nornu nonu | Neotree toggle",
+-- })
 
 -- This will run last in the setup process and is a good place to configure
 -- things like custom filetypes. This just pure lua so anything that doesn't
@@ -18,3 +18,14 @@
 --     ["~/%.config/foo/.*"] = "fooscript",
 --   },
 -- }
+--
+-- vim.api.nvim_create_autocmd("FileType", {
+--   -- You can set pattern = "*" but it will also display spell errors in buffers like lazygit
+--   pattern = { "lua", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+--   callback = function()
+--     vim.opt_local.spell = true
+--     vim.opt_local.spelllang = "en_us"
+--     vim.opt_local.spelloptions = "camel"
+--     vim.opt_local.spellcapcheck = ""
+--   end,
+-- })
