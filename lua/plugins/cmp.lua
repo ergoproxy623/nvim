@@ -1,3 +1,32 @@
+local kind_icons = {
+  Text = "",
+  Method = "󰆧",
+  Function = "󰊕",
+  Constructor = "",
+  Field = "󰇽",
+  Variable = "󰂡",
+  Class = "󰠱",
+  Interface = "",
+  Module = "",
+  Property = "󰜢",
+  Unit = "",
+  Value = "󰎠",
+  Enum = "",
+  Keyword = "󰌋",
+  Snippet = "",
+  Color = "󰏘",
+  File = "󰈙",
+  Reference = "",
+  Folder = "󰉋",
+  EnumMember = "",
+  Constant = "󰏿",
+  Struct = "",
+  Event = "",
+  Operator = "󰆕",
+  TypeParameter = "󰅲",
+  AngularSelector = "><"
+}
+
 return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -22,9 +51,9 @@ return { -- override nvim-cmp plugin
         { name = "path", priority = 750 },
         { name = "emoji", priority = 450 }, -- add new source
         { name = "html-css", priority = 500 },
-        { name = "angular-selectors", priority = 500 },
+        { name = "angular-selectors", priority = 1000 },
         { name = "calc", priority = 10 },
-        {name= "npm", priority = 10},
+        { name = "npm", priority = 10 },
         {
           name = "dictionary",
           keyword_length = 2,
@@ -53,17 +82,25 @@ return { -- override nvim-cmp plugin
       }
     )
     opts.formatting = {
-        format = function(entry, vim_item)
-            if entry.source.name == "html-css" then
-                vim_item.menu = entry.completion_item.menu
-            end
-            return vim_item
-        end
+      format = function(entry, vim_item)
+        if entry.source.name == "html-css" then vim_item.menu = entry.completion_item.menu end
+        if entry.source.name == "angular-selectors" then vim_item.menu = entry.completion_item.menu end
+        vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+        -- -- Source
+        -- vim_item.menu = ({
+        --   buffer = "[Buffer]",
+        --   nvim_lsp = "[LSP]",
+        --   luasnip = "[LuaSnip]",
+        --   nvim_lua = "[Lua]",
+        --   latex_symbols = "[LaTeX]",
+        -- })[entry.source.name]
+        return vim_item
+      end,
     }
     return require("astrocore").extend_tbl(opts, {
-          mapping = {
-            ["<C-x>"] = cmp.mapping.select_next_item(),
-          },
-        })
+      mapping = {
+        ["<C-x>"] = cmp.mapping.select_next_item(),
+      },
+    })
   end,
 }
