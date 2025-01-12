@@ -27,8 +27,9 @@ You can also just clone this repository directly if you do not want to track you
 git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
 ```
 
-````fd for plenary
-install fd
+#### Fix for plenary
+````sell
+sudo pacman -S fd
 ````
 #### Start Neovim
 
