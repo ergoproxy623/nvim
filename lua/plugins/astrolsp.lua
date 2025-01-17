@@ -47,17 +47,17 @@ return {
 
       angularls = {
         filetypes = {
-           "typescript", "html", "typescriptreact", "typescript.tsx", "angular.html", "css", "scss", "sass"
+           "typescript", "html", "typescriptreact", "typescript.tsx", "angularhtml", "css", "scss", "sass"
         }
       },
       emmet_ls = {
         filetypes = {
-            "html", "angular.html", "css", "scss", "sass"
+            "html", "angularhtml", "css", "scss", "sass"
         }
       },
       emmet_language_server = {
         filetypes = {
-            "html", "angular.html", "css", "scss", "sass"
+            "html", "angularhtml", "css", "scss", "sass"
         }
       }
     },

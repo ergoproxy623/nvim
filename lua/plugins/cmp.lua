@@ -24,7 +24,7 @@ local kind_icons = {
   Event = "",
   Operator = "󰆕",
   TypeParameter = "󰅲",
-  AngularSelector = "><"
+  AngularSelector = "><",
 }
 
 return { -- override nvim-cmp plugin
