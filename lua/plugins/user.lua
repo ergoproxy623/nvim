@@ -17,6 +17,7 @@ return {
   "nvim-treesitter/playground",
   "ergoproxy623/nvim-http",
   "tpope/vim-surround",
+  "dlvandenberg/tree-sitter-angular",
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",

@@ -30,7 +30,7 @@
   "contributes": {
     "snippets": [
       {
-        "language": "angularhtml",
+        "language": "htmlangular",
         "path": "./html.json"
       },
       {
