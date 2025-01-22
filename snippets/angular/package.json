@@ -41,6 +41,11 @@
         "language": "html",
         "path": "./html-ionic.json"
       },
+
+      {
+        "language": "htmlangular",
+        "path": "./html-ionic.json"
+      },
       {
         "language": "typescript",
         "path": "./typescript.json"

@@ -3,7 +3,6 @@
 
 ---@type LazySpec
 return {
-
   -- == Examples of Adding Plugins ==
   "nvim-lua/plenary.nvim",
   "andweeb/presence.nvim",
@@ -18,6 +17,7 @@ return {
   "ergoproxy623/nvim-http",
   "tpope/vim-surround",
   "dlvandenberg/tree-sitter-angular",
+  "max397574/better-escape.nvim",
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
@@ -62,7 +62,7 @@ return {
       vim.g.translator_history_enable = true
     end,
   },
-    -- == Examples of Overriding Plugins ==
+  -- == Examples of Overriding Plugins ==
 
   -- customize alpha options
   {
@@ -123,22 +123,16 @@ return {
     end,
     lazy = false,
   },
-  {
-    "rafamadriz/friendly-snippets",
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load { paths = { "./snippets/angular", "./snippets/ionic" } }
-    end,
-  },
-
-  -- You can disable default plugins as follows:
-  -- { "max397574/better-escape.nvim", enabled = false },
-  "max397574/better-escape.nvim",
 
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
     "L3MON4D3/LuaSnip",
+    dependencies = { "rafamadriz/friendly-snippets" },
     config = function(plugin, opts)
       require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
+      require("luasnip.loaders.from_vscode").lazy_load { paths = { "./snippets/angular", "./snippets/ionic" } }
+
+      -- require'luasnip'.filetype_extend("angular")
       -- add more custom luasnip configuration such as filetype extend or custom snippets
       local luasnip = require "luasnip"
       luasnip.filetype_extend("javascript", { "javascriptreact" })
