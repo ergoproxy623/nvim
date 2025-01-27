@@ -68,7 +68,7 @@ return {
         ["<Leader>z"] = {  ":UndotreeToggle<cr>",  desc = "Undotree" },
         -- quick save
         ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-        ["<Leader>x"] = {
+        ["<Leader>c"] = {
           function()
             local bufs = vim.fn.getbufinfo({ buflisted = true })
             require("astrocore.buffer").close(0)
