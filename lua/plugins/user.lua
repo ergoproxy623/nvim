@@ -18,6 +18,13 @@ return {
   "tpope/vim-surround",
   "dlvandenberg/tree-sitter-angular",
   "max397574/better-escape.nvim",
+  "vim-test/vim-test",
+  "mattkubej/jest.nvim",
+  {"David-Kunz/jester" ,
+   dap = {
+      console = 'externalTerminal'
+    }
+  },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
