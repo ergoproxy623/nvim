@@ -13,7 +13,8 @@ return {
 
     -- Plugin will load when you use these keys
     keys = {
-      { "<leader>rx", "<cmd>Telescope nx actions<CR>", desc = "nx actions"}
+      { "<leader>rx", "<cmd>Telescope nx actions<CR>", desc = "nx actions"},
+      { "<leader>rg", "<cmd>Telescope nx generators<CR>", desc = "nx generators"},
     },
   },
 }

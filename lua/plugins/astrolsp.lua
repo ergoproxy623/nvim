@@ -2,7 +2,12 @@
 -- Configuration documentation can be found with `:h astrolsp`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
-
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local angular_root = function(fname)
+        vim.notify("Root dir called", vim.log.levels.INFO)
+        local util = require("lspconfig/util")
+        return util.root_pattern("nx.json")(fname) or util.find_git_ancestor(fname)
+      end
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
@@ -47,12 +52,12 @@ return {
 
       angularls = {
         filetypes = {
-           "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular", "css", "scss", "sass"
+           "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular","angular", "css", "scss", "sass"
         }
       },
       emmet_ls = {
         filetypes = {
-            "html", "htmlangular", "css", "scss", "sass"
+            "html", "htmlangular", "css", "scss", "sass", "angular"
         }
       },
       emmet_language_server = {
@@ -70,7 +75,10 @@ return {
       -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
 
-      angularls = function(_, opts) require("lspconfig").angularls.setup(opts)  end -- or a custom handler function can be passed
+      angularls = function(_, opts) require("lspconfig").angularls.setup({
+        capabilities = capabilities,
+        root_dir = angular_root
+      })  end -- or a custom handler function can be passed
     },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
