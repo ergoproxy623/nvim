@@ -4,7 +4,6 @@
 --       as this provides autocomplete and documentation while editing
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local angular_root = function(fname)
-        vim.notify("Root dir called", vim.log.levels.INFO)
         local util = require("lspconfig/util")
         return util.root_pattern("nx.json")(fname) or util.find_git_ancestor(fname)
       end
