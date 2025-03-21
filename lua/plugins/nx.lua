@@ -1,6 +1,6 @@
 return {
   {
-    "Equilibris/nx.nvim",
+    "ergoproxy623/nx.nvim",
 
     dependencies = {
       "nvim-telescope/telescope.nvim",
