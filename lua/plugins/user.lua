@@ -20,6 +20,7 @@ return {
   "max397574/better-escape.nvim",
   "vim-test/vim-test",
   "mattkubej/jest.nvim",
+  "davidmh/cspell.nvim",
   {"David-Kunz/jester" ,
    dap = {
       console = 'externalTerminal'

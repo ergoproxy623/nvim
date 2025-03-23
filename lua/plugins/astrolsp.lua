@@ -63,6 +63,9 @@ return {
         filetypes = {
             "html", "htmlangular", "css", "scss", "sass"
         }
+      },
+      typos_lsp = {
+        filetypes = {"htmlangular", "angular", "typescript", "lua"}
       }
     },
     -- customize how language servers are attached
