@@ -11,7 +11,7 @@ local config = {
   --
   -- looks for a cspell config in the ~/.config/ directory, or creates a file in the directory
   -- using 'config_file_preferred_name' when a code action for one of the locations is selected
-  cspell_config_dirs = { "~/.config/nvim" }
+  cspell_config_dirs = { "~/.config/nvim/" }
 
 }
 
@@ -27,13 +27,16 @@ return {
       table.insert(
         opts.sources,
         cspell.diagnostics.with({
-          config = config,
           diagnostics_postprocess = function(diagnostic)
             diagnostic.severity = vim.diagnostic.severity.HINT
           end,
+        config = config
         })
       )
-      table.insert(opts.sources, cspell.code_actions)
+      table.insert(opts.sources, cspell.code_actions.with({
+        config = config
+      }))
     end,
+
   },
 }

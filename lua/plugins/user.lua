@@ -19,7 +19,7 @@ return {
   "dlvandenberg/tree-sitter-angular",
   "max397574/better-escape.nvim",
   "vim-test/vim-test",
-  "mattkubej/jest.nvim",
+  "ergoproxy623/jest.nvim",
   "davidmh/cspell.nvim",
   {"David-Kunz/jester" ,
    dap = {
