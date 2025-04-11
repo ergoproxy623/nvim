@@ -345,7 +345,7 @@ return {
           local push_text = self.push_needed and ' ⇡' or ''
           local pull_text = self.pull_needed and ' ⇣' or ''
 
-          return ' ' .. self.status_dict.head .. pull_text .. pull_text
+          return ' ' .. self.status_dict.head .. pull_text .. push_text
         end,
         hl = { bold = true },
       },
