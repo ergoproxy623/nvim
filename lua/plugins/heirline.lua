@@ -321,9 +321,8 @@ return {
           h:close()
           return res
         end
-
-        self.push_needed = safe_count('git rev-list --count HEAD...origin/' .. self.branch .. ' 2>/dev/null') > 0
-        self.pull_needed = safe_count('git rev-list --count origin/' .. self.branch .. '...HEAD 2>/dev/null') > 0
+        self.push_needed = safe_count('git rev-list --count origin/' .. self.branch .. '..HEAD 2>/dev/null') > 0
+        self.pull_needed = safe_count('git rev-list --count HEAD..origin/' .. self.branch .. ' 2>/dev/null') > 0
 
         -- Таймер для періодичного оновлення
         if not self._git_timer then

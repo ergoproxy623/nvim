@@ -1,5 +1,6 @@
 return {
   'akinsho/toggleterm.nvim',
+  lazy = false,
   cmd = { 'ToggleTerm', 'TermExec' },
   opts = {
     highlights = {
