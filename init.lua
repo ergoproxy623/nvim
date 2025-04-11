@@ -275,6 +275,7 @@ require('lazy').setup({
   'nvim-lua/lsp-status.nvim',
   'SmiteshP/nvim-navic',
   'mfussenegger/nvim-dap',
+  'tpope/vim-surround',
   { 'David-Kunz/jester', dap = {
     console = 'externalTerminal',
   } },
@@ -439,6 +440,7 @@ require('lazy').setup({
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]erminal' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>g', group = 'Git', mode = { 'n', 'v' } },
       },
     },
   },
@@ -1116,7 +1118,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
+  --require 'kickstart.plugins.autopairs',
   --  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`

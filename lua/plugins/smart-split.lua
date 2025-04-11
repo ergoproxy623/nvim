@@ -3,7 +3,7 @@ local mux = term == 'tmux' or term == 'wezterm' or vim.env.KITTY_LISTEN_ON
 
 return {
   'mrjones2014/smart-splits.nvim',
-  lazy = true,
+  lazy = false,
   event = mux and 'VeryLazy' or nil, -- load early if mux detected
   opts = {
     ignored_filetypes = { 'nofile', 'quickfix', 'qf', 'prompt' },
