@@ -935,8 +935,7 @@ require('lazy').setup({
           local luasnip = require 'luasnip'
           require('luasnip.loaders.from_vscode').lazy_load { paths = { './snippets/angular', './snippets/ionic' } }
           luasnip.filetype_extend('javascript', { 'javascriptreact' })
-
-          local cmp = require 'cmp'
+          local cmp_status, cmp = pcall(require, 'cmp')
           if not opts.snippet then
             opts.snippet = {}
           end
@@ -967,10 +966,14 @@ require('lazy').setup({
     },
     config = function()
       -- See `:help cmp`
-      local cmp = require 'cmp'
+      local map = function(keys, func, desc, mode)
+        mode = mode or 'n'
+        vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+      end
+
+      local cmp_status, cmp = pcall(require, 'cmp')
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
-
       cmp.setup {
         snippet = {
           expand = function(args)
@@ -985,7 +988,7 @@ require('lazy').setup({
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
         mapping = cmp.mapping.preset.insert {
           -- Select the [n]ext item
-          ['<Tab>'] = cmp.mapping.select_next_item,
+          ['<Tab>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
           -- Select the [p]revious item
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
@@ -1001,7 +1004,6 @@ require('lazy').setup({
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
           --['<CR>'] = cmp.mapping.confirm { select = true },
-          --['<Tab>'] = cmp.mapping.select_next_item(),
           --['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
           -- Manually trigger a completion from nvim-cmp.
