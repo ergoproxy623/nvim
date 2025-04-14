@@ -355,7 +355,7 @@ return {
         condition = function(self)
           return self.has_changes
         end,
-        provider = '(',
+        provider = '[',
       },
       {
         provider = function(self)
@@ -382,7 +382,7 @@ return {
         condition = function(self)
           return self.has_changes
         end,
-        provider = ')',
+        provider = ']',
       },
     }
 

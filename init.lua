@@ -129,7 +129,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes:2'
+vim.opt.signcolumn = 'auto:2'
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -165,6 +165,17 @@ vim.opt.colorcolumn = '140'
 -- tabline
 -- Yep, with heirline we're driving manual!
 vim.opt.showtabline = 2
+-- Folding
+-- Nice and simple folding:
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldtext = ''
+vim.opt.foldcolumn = '0'
+vim.opt.fillchars:append { fold = ' ' }
+-- folding end
+
 vim.cmd [[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]]
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
