@@ -1,1 +1,13 @@
-{"language":"en","words":["nvim","fnamemodify","fsize","htmlangular","angularls"],"flagWords":[],"version":"0.2"}
+{
+  "flagWords": [],
+  "language": "en",
+  "version": "0.2",
+  "words": [
+    "nvim",
+    "fnamemodify",
+    "fsize",
+    "htmlangular",
+    "angularls",
+    "showmode"
+  ]
+}

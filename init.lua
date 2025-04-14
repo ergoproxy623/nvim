@@ -173,9 +173,7 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldtext = ''
 vim.opt.foldcolumn = '0'
-vim.opt.fillchars:append { fold = ' ' }
 -- folding end
-
 vim.cmd [[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]]
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -729,7 +727,8 @@ require('lazy').setup({
           },
           priority = 5,
         } or {},
-        virtual_text = {
+        virtual_lines = {
+          current_line = true,
           source = 'if_many',
           spacing = 2,
           format = function(diagnostic)
