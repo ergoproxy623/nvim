@@ -7,12 +7,13 @@ return {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
-        add = { text = '▎' },
-        change = { text = '▎' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '┆' },
+        add = { text = '▎', priority = 10 },
+        change = { text = '▎', priority = 10 },
+        delete = { text = '_', priority = 10 },
+        topdelete = { text = '‾', priority = 10 },
+        changedelete = { text = '┆', priority = 10 },
       },
+      signcolumn = true,
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
 

@@ -129,7 +129,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes:2'
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -716,6 +716,7 @@ require('lazy').setup({
             [vim.diagnostic.severity.INFO] = '󰋽 ',
             [vim.diagnostic.severity.HINT] = '󰌶 ',
           },
+          priority = 5,
         } or {},
         virtual_text = {
           source = 'if_many',
@@ -808,9 +809,6 @@ require('lazy').setup({
             'scss',
             'sass',
           },
-        },
-        typos_lsp = {
-          filetypes = { 'htmlangular', 'angular', 'typescript', 'lua' },
         },
       }
 

@@ -2,7 +2,7 @@ return {
   'goolord/alpha-nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    require 'config.alpha' -- конфіг в окремому файлі
+    require 'config.alpha'
   end,
   event = 'VimEnter',
 }
