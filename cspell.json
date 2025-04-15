@@ -1,13 +1,1 @@
-{
-  "flagWords": [],
-  "language": "en",
-  "version": "0.2",
-  "words": [
-    "nvim",
-    "fnamemodify",
-    "fsize",
-    "htmlangular",
-    "angularls",
-    "showmode"
-  ]
-}
+{"words":["nvim","fnamemodify","fsize","htmlangular","angularls","showmode","texthl","hjkl","lazydev"],"language":"en","version":"0.2","flagWords":[]}

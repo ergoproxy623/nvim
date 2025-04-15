@@ -1,5 +1,10 @@
 -- Neo-tree is a Neovim plugin to browse the file system
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
+local function toggleterm_in_direction(state, direction)
+  local node = state.tree:get_node()
+  local path = node.type == 'file' and node:get_parent_id() or node:get_id()
+  require('toggleterm.terminal').Terminal:new({ dir = path, direction = direction }):toggle()
+end
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
@@ -67,7 +72,22 @@ return {
           ['C'] = 'close_node',
           ['R'] = 'refresh',
           ['?'] = 'show_help',
+          ['T'] = { 'show_help', nowait = false, config = { title = 'New Terminal', prefix_key = 'T' } },
+          ['Tf'] = 'toggleterm_float',
+          ['Th'] = 'toggleterm_horizontal',
+          ['Tv'] = 'toggleterm_vertical',
         },
+      },
+      commands = {
+        toggleterm_float = function(state)
+          toggleterm_in_direction(state, 'float')
+        end,
+        toggleterm_horizontal = function(state)
+          toggleterm_in_direction(state, 'horizontal')
+        end,
+        toggleterm_vertical = function(state)
+          toggleterm_in_direction(state, 'vertical')
+        end,
       },
       sources = {
         'filesystem',
