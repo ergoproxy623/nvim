@@ -4,7 +4,7 @@ return {
   keys = {
     -- Will use Telescope if installed or a vim.ui.select picker otherwise
     { '<leader>wr', '<cmd>SessionSearch<CR>', desc = 'Session search' },
-    { '<leader>ws', '<cmd>SessionSave<CR>', desc = 'Save session' },
+    { '<leader>ww', '<cmd>SessionSave<CR>', desc = 'Save session' },
     { '<leader>wa', '<cmd>SessionToggleAutoSave<CR>', desc = 'Toggle autosave' },
   },
   config = function()
@@ -15,7 +15,6 @@ return {
       post_restore_cmds = {
         'Neotree', -- Close Neotree before saving session
       },
-
       use_git_branch = true,
       bypass_save_filetypes = { 'alpha', 'dashboard' }, -- or whatever dashboard you use
       suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },

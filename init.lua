@@ -727,7 +727,7 @@ require('lazy').setup({
           },
           priority = 5,
         } or {},
-        virtual_lines = {
+        virtual_text = {
           current_line = true,
           source = 'if_many',
           spacing = 2,
@@ -1094,7 +1094,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  --require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.autopairs',
   --  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`

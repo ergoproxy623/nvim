@@ -2,7 +2,7 @@ return {
   'rebelot/heirline.nvim',
   -- You can optionally lazy-load heirline on UiEnter
   -- to make sure all required plugins and colorschemes are loaded before setup
-  lazy = false,
+  event = 'BufEnter',
   config = function()
     local conditions = require 'heirline.conditions'
     local utils = require 'heirline.utils'
@@ -147,7 +147,7 @@ return {
       provider = function(self)
         -- first, trim the pattern relative to the current directory. For other
         -- options, see :h filename-modifers
-        local filename = vim.fn.fnamemodify(self.filename, ':.')
+        local filename = vim.fn.fnamemodify(self.filename, ':t')
         if filename == '' then
           return '[No Name]'
         end
@@ -692,14 +692,6 @@ return {
       end
     end, { TablineFileNameBlock, TablineCloseButton })
 
-    -- and here we go
-    local BufferLine = utils.make_buflist(
-      TablineBufferBlock,
-      { provider = '', hl = { fg = 'gray' } }, -- left truncation, optional (defaults to "<")
-      { provider = '', hl = { fg = 'gray' } } -- right trunctation, also optional (defaults to ...... yep, ">")
-      -- by the way, open a lot of buffers and try clicking them ;)
-    )
-
     -- this is the default function used to retrieve buffers
     local get_bufs = function()
       return vim.tbl_filter(function(bufnr)
@@ -731,7 +723,7 @@ return {
       { provider = ' ', hl = { fg = 'gray' } },
       -- out buf_func simply returns the buflist_cache
       function()
-        return buflist_cache
+        return type(buflist_cache) == 'table' and buflist_cache or {}
       end,
       -- no cache, as we're handling everything ourselves
       false
