@@ -280,7 +280,7 @@ return {
         for i, server in pairs(vim.lsp.get_clients { bufnr = 0 }) do
           table.insert(names, server.name)
         end
-        return ' [' .. table.concat(names, ' ') .. ']'
+        return '  ' .. table.concat(names, ' ') .. ' '
       end,
       hl = { fg = 'green', bold = true },
     }
@@ -360,21 +360,21 @@ return {
       {
         provider = function(self)
           local count = self.status_dict.added or 0
-          return count > 0 and ('' .. count)
+          return count > 0 and (' ' .. count)
         end,
         hl = { fg = 'green' },
       },
       {
         provider = function(self)
           local count = self.status_dict.removed or 0
-          return count > 0 and ('' .. count)
+          return count > 0 and (' ' .. count)
         end,
         hl = { fg = 'red' },
       },
       {
         provider = function(self)
           local count = self.status_dict.changed or 0
-          return count > 0 and ('' .. count)
+          return count > 0 and (' ' .. count)
         end,
         hl = { fg = 'yellow' },
       },
@@ -667,7 +667,7 @@ return {
       { provider = ' ' },
       {
         provider = ' 󰅙 ',
-        hl = { fg = 'gray' },
+        hl = { fg = 'blue' },
         on_click = {
           callback = function(_, minwid)
             vim.schedule(function()
