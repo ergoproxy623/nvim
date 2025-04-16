@@ -251,22 +251,6 @@ return {
       provider = '%7(%l/%3L%):%2c %P',
     }
 
-    -- I take no credits for this! 🦁
-    local ScrollBar = {
-      static = {
-        sbar = { '▁', '▂', '▃', '▄', '▅', '▆', '▇', '█' },
-        -- Another variant, because the more choice the better.
-        -- sbar = { '🭶', '🭷', '🭸', '🭹', '🭺', '🭻' }
-      },
-      provider = function(self)
-        local curr_line = vim.api.nvim_win_get_cursor(0)[1]
-        local lines = vim.api.nvim_buf_line_count(0)
-        local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-        return string.rep(self.sbar[i], 2)
-      end,
-      hl = { fg = 'blue', bg = 'yellow' },
-    }
-
     local LSPActive = {
       condition = conditions.lsp_attached,
       update = { 'LspAttach', 'LspDetach' },
@@ -323,10 +307,7 @@ return {
         end
         self.push_needed = safe_count('git rev-list --count origin/' .. self.branch .. '..HEAD 2>/dev/null') > 0
         self.pull_needed = safe_count('git rev-list --count HEAD..origin/' .. self.branch .. ' 2>/dev/null') > 0
-        -- self.push_needed = safe_count('git rev-list --count HEAD..origin/' .. self.branch .. ' 2>/dev/null') > 0
-        -- self.pull_needed = safe_count('git rev-list --count origin/' .. self.branch .. '...HEAD 2>/dev/null') > 0
-        --
-        -- Таймер для періодичного оновлення
+
         if not self._git_timer then
           self._git_timer = vim.loop.new_timer()
           self._git_timer:start(
@@ -360,21 +341,21 @@ return {
       {
         provider = function(self)
           local count = self.status_dict.added or 0
-          return count > 0 and (' ' .. count)
+          return count > 0 and ('  ' .. count)
         end,
         hl = { fg = 'green' },
       },
       {
         provider = function(self)
           local count = self.status_dict.removed or 0
-          return count > 0 and (' ' .. count)
+          return count > 0 and ('  ' .. count)
         end,
         hl = { fg = 'red' },
       },
       {
         provider = function(self)
           local count = self.status_dict.changed or 0
-          return count > 0 and (' ' .. count)
+          return count > 0 and ('  ' .. count)
         end,
         hl = { fg = 'yellow' },
       },
@@ -525,7 +506,7 @@ return {
       Space,
       LSPActive,
       Space,
-      -- LSPMessages,
+      --LSPMessages,
       Space,
       Ruler,
     }
@@ -829,7 +810,7 @@ return {
 
     local TabLine = {
       init = function(self)
-        -- Знайдемо вікно neotree
+        -- neotree widtn
         for _, win in ipairs(vim.api.nvim_list_wins()) do
           local buf = vim.api.nvim_win_get_buf(win)
           local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
