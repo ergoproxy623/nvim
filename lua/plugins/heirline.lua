@@ -282,7 +282,7 @@ return {
         end
         return '  ' .. table.concat(names, ' ') .. ' '
       end,
-      hl = { fg = 'green', bold = true },
+      hl = { fg = 'whitesmoke', bold = true },
     }
 
     -- I personally use it only to display progress messages!

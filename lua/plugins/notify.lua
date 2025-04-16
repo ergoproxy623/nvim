@@ -1,42 +1,44 @@
 return {
   'rcarriga/nvim-notify',
-  lazy = true,
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  event = 'VeryLazy',
   keys = {
     {
-      '<Leader>uD',
+      '<leader>un',
       function()
-        require('notify').dismiss { pending = true, silent = true }
+        require('notify').dismiss { silent = true, pending = true }
       end,
-      desc = 'Dismiss notifications',
+      desc = 'Очистити всі сповіщення',
+    },
+    {
+      '<leader>sn',
+      '<cmd>Telescope notify<cr>',
+      desc = 'Історія сповіщень',
     },
   },
   opts = {
-    icons = {
-      DEBUG = '',
-      ERROR = '',
-      INFO = '',
-      TRACE = '✎',
-      WARN = '',
-    },
+    stages = 'fade', -- або "static", "slide", "fade_in_slide_out"
+    timeout = 2000,
+    max_width = 80,
     max_height = function()
       return math.floor(vim.o.lines * 0.75)
     end,
-    max_width = function()
-      return math.floor(vim.o.columns * 0.75)
-    end,
-    on_open = function(win)
-      vim.api.nvim_win_set_config(win, { zindex = 175 })
-      vim.wo[win].conceallevel = 3
-      local buf = vim.api.nvim_win_get_buf(win)
-      if not pcall(vim.treesitter.start, buf, 'markdown') then
-        vim.bo[buf].syntax = 'markdown'
-      end
-      vim.wo[win].spell = false
-    end,
+    background_colour = '#000000',
+    render = 'default', -- або minimal, wrapped-compact
+    fps = 60,
   },
   config = function(_, opts)
-    require('notify').setup(opts)
-    vim.notify = require 'notify'
+    local notify = require 'notify'
+    notify.setup(opts)
+
+    --- Переопреділення vim.notify з фільтром
+    vim.notify = function(msg, level, user_opts)
+      if type(msg) == 'string' then
+        local lowered = msg:lower()
+        if lowered:match 'diagnostic' or lowered:match 'lsp' or lowered:match 'language server' then
+          return
+        end
+      end
+      notify(msg, level, user_opts)
+    end
   end,
 }
