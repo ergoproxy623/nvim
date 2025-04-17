@@ -585,6 +585,9 @@ require('lazy').setup({
     },
     config = function()
       local util = require 'lspconfig.util'
+      vim.lsp.handlers['$/progress'] = function() end
+      vim.lsp.handlers['window/logMessage'] = function() end
+      vim.lsp.handlers['window/showMessage'] = function() end
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
