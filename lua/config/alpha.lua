@@ -13,7 +13,7 @@ dashboard.section.header.val = {
 
 dashboard.section.buttons.val = {
   dashboard.button('f', '󰈞  Find File', ':Telescope find_files<CR>'),
-  dashboard.button('r', '  Recent Files', ':Telescope oldfiles<CR>'),
+  dashboard.button('r', '  Recent Files', ':SessionRestore<CR>'),
   dashboard.button('n', '  New File', ':ene <BAR> startinsert <CR>'),
   dashboard.button('s', '  Colorscheme', ':Telescope colorscheme<CR>'),
   dashboard.button('l', '󰒲  Lazy', ':Lazy<CR>'),

@@ -15,6 +15,7 @@ return {
       post_restore_cmds = {
         'Neotree', -- Close Neotree before saving session
       },
+      auto_restore = false,
       use_git_branch = true,
       bypass_save_filetypes = { 'alpha', 'dashboard' }, -- or whatever dashboard you use
       suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
