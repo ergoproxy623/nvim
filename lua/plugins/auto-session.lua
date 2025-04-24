@@ -13,7 +13,10 @@ return {
         'tabdo Neotree close', -- Close Neotree before saving session
       },
       post_restore_cmds = {
-        'Neotree', -- Close Neotree before saving session
+        'Neotree', -- Open Neotree
+        function()
+          vim.cmd.redrawtabline()
+        end,
       },
       auto_restore = false,
       use_git_branch = true,
