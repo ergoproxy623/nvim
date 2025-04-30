@@ -975,6 +975,7 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp-signature-help',
+      'onsails/lspkind.nvim',
     },
     config = function()
       -- See `:help cmp`
@@ -1055,6 +1056,13 @@ require('lazy').setup({
           { name = 'luasnip' },
           { name = 'path' },
           { name = 'nvim_lsp_signature_help' },
+        },
+        formatting = {
+          format = require('lspkind').cmp_format {
+            mode = 'symbol_text', -- показує і символ, і текст (наприклад:   Function)
+            maxwidth = 50,
+            ellipsis_char = '...',
+          },
         },
       }
     end,
