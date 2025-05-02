@@ -285,7 +285,6 @@ require('lazy').setup({
   'dlvandenberg/tree-sitter-angular',
   'max397574/better-escape.nvim',
   'vim-test/vim-test',
-  'ergoproxy623/jest.nvim',
   'davidmh/cspell.nvim',
   'nvim-lua/lsp-status.nvim',
   'SmiteshP/nvim-navic',
