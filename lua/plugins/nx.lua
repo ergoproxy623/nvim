@@ -1,6 +1,6 @@
 return {
   {
-    'ergoproxy623/nx.nvim',
+    'Sewb21/nx.nvim',
 
     dependencies = {
       'nvim-telescope/telescope.nvim',
@@ -13,8 +13,8 @@ return {
 
     -- Plugin will load when you use these keys
     keys = {
-      { '<leader>rx', '<cmd>Telescope nx actions<CR>', desc = 'nx actions' },
-      { '<leader>rg', '<cmd>Telescope nx generators<CR>', desc = 'nx generators' },
+      { '<leader>wx', '<cmd>Telescope nx actions<CR>', desc = 'nx actions' },
+      { '<leader>wg', '<cmd>Telescope nx generators<CR>', desc = 'nx generators' },
     },
   },
 }
