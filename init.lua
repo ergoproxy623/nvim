@@ -228,7 +228,7 @@ vim.o.updatetime = 1500
 
 local group = vim.api.nvim_create_augroup('autosave_like_webstorm', { clear = true })
 
-local function format_and_save()
+local function format_and_save(   )
   if vim.bo.modified and vim.bo.buftype == '' and not vim.bo.readonly then
     local ok = pcall(function()
       require('conform').format { bufnr = 0, async = false }
@@ -773,7 +773,7 @@ require('lazy').setup({
           -- },
           priority = 1,
         } or {},
-        virtual_text = {
+        virtual_lines = {
           current_line = true,
           source = 'if_many',
           spacing = 2,
@@ -933,8 +933,18 @@ require('lazy').setup({
     opts = {
       notify_on_error = false,
       format_on_save = false,
+      -- Disable "format_on_save lsp_fallback" for languages that don't
+      -- have a well standardized coding style. You can add additional
+      -- languages here or re-enable it for the disabled ones.
       formatters_by_ft = {
         lua = { 'stylua' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        json = { 'prettier' },
+        html = { 'prettier' },
+        css = { 'prettier' },
+        markdown = { 'prettier' },
+        yaml = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
