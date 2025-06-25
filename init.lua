@@ -228,7 +228,7 @@ vim.o.updatetime = 1500
 
 local group = vim.api.nvim_create_augroup('autosave_like_webstorm', { clear = true })
 
-local function format_and_save(   )
+local function format_and_save()
   if vim.bo.modified and vim.bo.buftype == '' and not vim.bo.readonly then
     local ok = pcall(function()
       require('conform').format { bufnr = 0, async = false }
@@ -940,6 +940,7 @@ require('lazy').setup({
         lua = { 'stylua' },
         javascript = { 'prettier' },
         typescript = { 'prettier' },
+        htmlangular = { 'prettier' },
         json = { 'prettier' },
         html = { 'prettier' },
         css = { 'prettier' },
