@@ -304,7 +304,6 @@ require('lazy').setup({
   'mbbill/undotree',
   'KabbAmine/vCoolor.vim',
   'gbprod/yanky.nvim',
-  'neoclide/npm.nvim',
   'tpope/vim-unimpaired',
   'nvim-treesitter/playground',
   'ergoproxy623/nvim-http',
@@ -563,6 +562,7 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
+      local custom = require 'tools.npm-run-list'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search Help' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Search Keymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Search Files' })
@@ -573,6 +573,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Search Resume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = 'Search Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader>sw', builtin.live_grep, { desc = 'Search Word' })
+      vim.keymap.set('n', '<leader>sm', function()
+        custom.run_npm_script()
+      end, { desc = 'Search Npm Run' })
 
       -- Slightly advanced example of overriding default behavior and theme
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
@@ -953,146 +956,6 @@ require('lazy').setup({
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     },
-  },
-
-  { -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      {
-        'L3MON4D3/LuaSnip',
-        dependencies = { { 'rafamadriz/friendly-snippets', lazy = true } },
-        opts = {
-          history = true,
-          delete_check_events = 'TextChanged',
-          region_check_events = 'CursorMoved',
-        },
-        config = function(plugin, opts)
-          local luasnip = require 'luasnip'
-          require('luasnip.loaders.from_vscode').lazy_load { paths = { './snippets/angular', './snippets/ionic' } }
-          luasnip.filetype_extend('javascript', { 'javascriptreact' })
-          local cmp_status, cmp = pcall(require, 'cmp')
-          if not opts.snippet then
-            opts.snippet = {}
-          end
-          opts.snippet.expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end
-
-          if not opts.sources then
-            opts.sources = {}
-          end
-          table.insert(opts.sources, { name = 'luasnip', priority = 750 })
-
-          -- ініціалізація mappings
-          if not opts.mappings then
-            opts.mappings = {}
-          end
-        end,
-      },
-
-      'saadparwaiz1/cmp_luasnip',
-
-      -- Adds other completion capabilities.
-      --  nvim-cmp does not ship with all sources by default. They are split
-      --  into multiple repos for maintenance purposes.
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-      'onsails/lspkind.nvim',
-    },
-    config = function()
-      -- See `:help cmp`
-      local map = function(keys, func, desc, mode)
-        mode = mode or 'n'
-        vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
-      end
-
-      local cmp_status, cmp = pcall(require, 'cmp')
-      local luasnip = require 'luasnip'
-      luasnip.config.setup {}
-      cmp.setup {
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-        -- For an understanding of why these mappings were
-        -- chosen, you will need to read `:help ins-completion`
-        --
-        -- No, but seriously. Please read `:help ins-completion`, it is really good!
-        mapping = cmp.mapping.preset.insert {
-          -- Select the [n]ext item
-          ['<Tab>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-          -- Select the [p]revious item
-          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-
-          -- Scroll the documentation window [b]ack / [f]orward
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-
-          -- Accept ([y]es) the completion.
-          --  This will auto-import if your LSP supports it.
-          --  This will expand snippets if the LSP sent a snippet.
-          ['<CR>'] = cmp.mapping.confirm { select = true },
-
-          -- If you prefer more traditional completion keymaps,
-          -- you can uncomment the following lines
-          --['<CR>'] = cmp.mapping.confirm { select = true },
-          --['<S-Tab>'] = cmp.mapping.select_prev_item(),
-
-          -- Manually trigger a completion from nvim-cmp.
-          --  Generally you don't need this, because nvim-cmp will display
-          --  completions whenever it has completion options available.
-          ['<C-Space>'] = cmp.mapping.complete {},
-
-          -- Think of <c-l> as moving to the right of your snippet expansion.
-          --  So if you have a snippet that's like:
-          --  function $name($args)
-          --    $body
-          --  end
-          --
-          -- <c-l> will move you to the right of each of the expansion locations.
-          -- <c-h> is similar, except moving you backwards.
-          ['<C-l>'] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            end
-          end, { 'i', 's' }),
-          ['<C-h>'] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            end
-          end, { 'i', 's' }),
-
-          -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-          --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-        },
-        sources = {
-          {
-            name = 'lazydev',
-            -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
-            group_index = 0,
-          },
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'path' },
-          { name = 'nvim_lsp_signature_help' },
-        },
-        formatting = {
-          format = require('lspkind').cmp_format {
-            mode = 'symbol_text', -- показує і символ, і текст (наприклад:   Function)
-            maxwidth = 50,
-            ellipsis_char = '...',
-          },
-        },
-      }
-    end,
   },
 
   -- Highlight todo, notes, etc in comments

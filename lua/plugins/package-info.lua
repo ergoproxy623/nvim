@@ -2,6 +2,7 @@ return {
   {
     'vuki656/package-info.nvim',
     dependencies = { 'MunifTanjim/nui.nvim' },
+    ft = 'json', -- або `lazy = true` якщо використовуєш LazyVim
     keys = {
       {
         '<leader>ns',
@@ -12,7 +13,7 @@ return {
       },
     },
     config = function()
-      require('telescope').load_extension 'package_info'
+      require('package-info').setup()
     end,
   },
 }
