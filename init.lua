@@ -755,6 +755,7 @@ require('lazy').setup({
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
+        update_in_insert = false,
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = '',
