@@ -563,6 +563,7 @@ require('lazy').setup({
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       local custom = require 'tools.npm-run-list'
+      local nx = require 'tools.nx-list'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search Help' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Search Keymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Search Files' })
@@ -576,6 +577,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sm', function()
         custom.run_npm_script()
       end, { desc = 'Search Npm Run' })
+      vim.keymap.set('n', '<leader>sN', function()
+        nx.run()
+      end, { desc = 'Search Nx Run' })
 
       -- Slightly advanced example of overriding default behavior and theme
       --  See `:help telescope.builtin.live_grep()` for information about particular keys

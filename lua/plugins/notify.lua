@@ -7,12 +7,12 @@ return {
       function()
         require('notify').dismiss { silent = true, pending = true }
       end,
-      desc = 'Очистити всі сповіщення',
+      desc = 'Clear all',
     },
     {
       '<leader>sn',
       '<cmd>Telescope notify<cr>',
-      desc = 'Історія сповіщень',
+      desc = 'History',
     },
   },
   opts = {

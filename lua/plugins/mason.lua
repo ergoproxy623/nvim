@@ -15,7 +15,7 @@ return {
         'cssls',
         'css_variables',
         'emmet_ls',
-        'eslint@4.8.0',
+        'eslint',
         'html',
         'somesass_ls',
         'vtsls',
