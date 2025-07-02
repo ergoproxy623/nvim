@@ -30,26 +30,22 @@ return {
 
             -- 🟠 Властивості об'єктів
             ['@lsp.mod.property'] = { fg = '#9876AA' },
+            ['@lsp.mod.local'] = { fg = '#A9B7C6' },
 
             -- 🔵 Методи / функції
             ['@lsp.type.method'] = { fg = '#FFC66D' },
             ['@lsp.type.function'] = { fg = '#6DFAFF' },
             ['@function.call'] = { fg = '#6DFAFF' },
 
-            -- 🧱 Статичні
-            ['@lsp.mod.static'] = { fg = palette.sakuraPink, italic = true },
-
-            -- 🔒 Приватні / Readonly
-            -- ['@lsp.mod.readonly'] = { fg = palette.fujiGray, italic = true },
-            -- ['@lsp.mod.private'] = { fg = palette.fujiGray, italic = true },
-
             -- 🔤 Рядки, числа, коментарі
-            ['@string'] = { fg = palette.springGreen },
-            ['@number'] = { fg = palette.surimiOrange },
+            ['@string'] = { fg = '#5A8759' },
+            ['@number'] = { fg = '#5897BB' },
             ['@comment'] = { fg = palette.fujiGray, italic = true },
 
             -- 🧩 Ключові слова
             ['@keyword'] = { fg = '#CC7832' },
+            ['@keyword.import'] = { fg = '#CC7832' },
+            ['@keyword.return'] = { fg = '#CC7832' },
             ['@signal_definition'] = { fg = '#a6e22e', bold = true },
             ['@signal_effect'] = { fg = '#fd971f', italic = true },
             -- return {
