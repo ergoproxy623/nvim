@@ -56,6 +56,7 @@ return { -- Autocompletion
     local cmp_status, cmp = pcall(require, 'cmp')
     local luasnip = require 'luasnip'
     luasnip.config.setup {}
+    cmp.register_source('angular_selectors', require 'tools.cmp-angular-selectors')
     cmp.setup {
       snippet = {
         expand = function(args)
@@ -118,6 +119,10 @@ return { -- Autocompletion
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
       sources = {
+        {
+          name = 'angular_selectors',
+          priority = 1000,
+        },
         {
           name = 'lazydev',
           -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it

@@ -240,6 +240,13 @@ local function format_and_save()
   end
 end
 
+vim.api.nvim_create_autocmd('BufReadPost', {
+  pattern = '*.component.html',
+  callback = function()
+    require('tools.cmp-angular-selectors').refresh()
+  end,
+})
+
 vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
   group = group,
   callback = format_and_save,
