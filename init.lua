@@ -587,6 +587,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sN', function()
         nx.run()
       end, { desc = 'Search Nx Run' })
+      vim.keymap.set('n', '<leader>q', function()
+        vim.cmd 'wqa'
+      end, { desc = 'Exit' })
 
       -- Slightly advanced example of overriding default behavior and theme
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
