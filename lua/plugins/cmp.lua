@@ -57,6 +57,7 @@ return { -- Autocompletion
     local luasnip = require 'luasnip'
     luasnip.config.setup {}
     cmp.register_source('angular_selectors', require 'tools.cmp-angular-selectors')
+    cmp.register_source('component_scss', require 'tools.cmp-component-css')
     cmp.setup {
       snippet = {
         expand = function(args)
@@ -123,6 +124,7 @@ return { -- Autocompletion
           name = 'angular_selectors',
           priority = 1000,
         },
+        { name = 'component_scss', priority = 1000 },
         {
           name = 'lazydev',
           -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
