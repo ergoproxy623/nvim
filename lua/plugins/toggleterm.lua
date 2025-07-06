@@ -44,7 +44,7 @@ return {
       direction = 'float',
       float_opts = {
         border = 'curved',
-        winblend = 3,
+        winblend = 0,
       },
     }
 
