@@ -19,6 +19,7 @@ return {
         'html',
         'somesass_ls',
         'vtsls',
+        'node-debug2-adapter',
         -- add more arguments for adding more language servers
       })
     end,

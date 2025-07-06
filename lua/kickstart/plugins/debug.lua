@@ -88,13 +88,99 @@ return {
 
       -- You can provide additional configuration to the handlers,
       -- see mason-nvim-dap README for more information
-      handlers = {},
+      handlers = {
+        chrome = function()
+          local dap = require 'dap'
+          local exts = {
+            'javascript',
+            'typescript',
+          }
+          dap.adapters.chrome = {
+            type = 'executable',
+            command = 'node',
+            args = { '/home/ergoproxy13/.local/share/nvim/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js' }, -- TODO adjust
+          }
+          dap.adapters.firefox = {
+            type = 'executable',
+            command = 'node',
+            args = { '/home/ergoproxy13/.local/share/nvim/mason/packages/firefox-debug-adapter/dist/adapter.bundle.js' }, -- TODO adjust
+          }
+
+          for i, ext in ipairs(exts) do
+            dap.configurations[ext] = {
+              {
+                name = 'Debug with Firefox',
+                type = 'firefox',
+                request = 'launch',
+                reAttach = true,
+                url = function()
+                  local co = coroutine.running()
+                  return coroutine.create(function()
+                    vim.ui.input({ prompt = 'Enter URL: ', default = 'http://localhost:4200' }, function(url)
+                      if url == nil or url == '' then
+                        return
+                      else
+                        coroutine.resume(co, url)
+                      end
+                    end)
+                  end)
+                end,
+                webRoot = '${workspaceFolder}',
+                timeout = 90000,
+                firefoxExecutable = '/usr/bin/firefox',
+                tmpDir = '/home/ergoproxy13/Documents/faketmp',
+              },
+              {
+                type = 'chrome',
+                request = 'launch',
+                name = 'Launch Chrome with "localhost"',
+                url = function()
+                  local co = coroutine.running()
+                  return coroutine.create(function()
+                    vim.ui.input({ prompt = 'Enter URL: ', default = 'http://localhost:4200' }, function(url)
+                      if url == nil or url == '' then
+                        return
+                      else
+                        coroutine.resume(co, url)
+                      end
+                    end)
+                  end)
+                end,
+                webRoot = vim.fn.getcwd(),
+                timeout = 90000,
+                protocol = 'inspector',
+                sourceMaps = true,
+                userDataDir = false,
+                resolveSourceMapLocations = {
+                  '${workspaceFolder}/**',
+                  '!**/node_modules/**',
+                },
+              },
+              {
+                type = 'chrome',
+                request = 'attach',
+                name = 'Attach Program (chrome, select port)',
+                program = '${file}',
+                cwd = vim.fn.getcwd(),
+                sourceMaps = true,
+                protocol = 'inspector',
+                port = function()
+                  return vim.fn.input('Select port: ', 9222)
+                end,
+                webRoot = '${workspaceFolder}',
+              },
+            }
+          end
+        end,
+      },
 
       -- You'll need to check that you have the required things installed
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'chrome',
+        'firefox',
       },
     }
 
@@ -120,17 +206,17 @@ return {
       },
     }
 
-    -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-    -- local breakpoint_icons = vim.g.have_nerd_font
-    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-    -- for type, icon in pairs(breakpoint_icons) do
-    --   local tp = 'Dap' .. type
-    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-    -- end
+    Change breakpoint icons
+    vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
+    vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+    local breakpoint_icons = vim.g.have_nerd_font
+        and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+      or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+    for type, icon in pairs(breakpoint_icons) do
+      local tp = 'Dap' .. type
+      local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    end
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
