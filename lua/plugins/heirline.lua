@@ -457,7 +457,7 @@ return {
         provider = function(self)
           return self.warnings > 0 and (self.warn_icon .. self.warnings .. ' ')
         end,
-        hl = { fg = colors.diag_warn},
+        hl = { fg = colors.diag_warn },
       },
       {
         provider = function(self)
@@ -517,6 +517,8 @@ return {
       Space,
       FileName,
       Align,
+      Space,
+      Git,
     }
 
     local SpecialStatusline = {
@@ -530,6 +532,8 @@ return {
       FileType,
       Space,
       Align,
+      Space,
+      Git,
     }
     local TerminalStatusline = {
 
@@ -545,6 +549,8 @@ return {
       Space,
       TerminalName,
       Align,
+      Space,
+      Git,
     }
 
     local StatusLines = {
