@@ -48,16 +48,6 @@ return {
       },
     }
 
-    local function toggle_term_cmd(cmd)
-      require('toggleterm.terminal').Terminal
-        :new({
-          cmd = cmd,
-          hidden = true,
-          direction = 'float',
-        })
-        :toggle()
-    end
-
     local keymaps = {
       ['<Leader>tf'] = { '<Cmd>ToggleTerm direction=float<CR>', desc = 'ToggleTerm float' },
       ['<Leader>th'] = { '<Cmd>ToggleTerm size=10 direction=horizontal<CR>', desc = 'ToggleTerm horizontal split' },
@@ -67,13 +57,48 @@ return {
     }
 
     if vim.fn.executable 'lazygit' == 1 then
+      local Terminal = require('toggleterm.terminal').Terminal
+
+      local function current_file_path()
+        return vim.fn.expand '%:p'
+      end
+
+      local lazygit_history = Terminal:new {
+        cmd = 'lazygit log ' .. current_file_path(),
+        hidden = true,
+        direction = 'float',
+        float_opts = {
+          border = 'double',
+        },
+      }
+
+      local function toggle_term_cmd(cmd)
+        local term = Terminal:new {
+          cmd = cmd,
+          hidden = true,
+          direction = 'float',
+          float_opts = {
+            border = 'double',
+          },
+        }
+        term:toggle()
+      end
+
       keymaps['<Leader>gg'] = {
         function()
           toggle_term_cmd 'lazygit'
         end,
         desc = 'ToggleTerm lazygit',
       }
+
       keymaps['<Leader>tl'] = keymaps['<Leader>gg']
+
+      keymaps['<Leader>tH'] = {
+        function()
+          lazygit_history:toggle()
+        end,
+        desc = 'LazyGit History (file)',
+      }
     end
     if vim.fn.executable 'node' == 1 then
       keymaps['<Leader>tn'] = {
