@@ -87,6 +87,56 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>q', function()
       vim.cmd 'wqa'
     end, { desc = 'Exit' })
+    local pickers = require 'telescope.pickers'
+    local finders = require 'telescope.finders'
+    local conf = require('telescope.config').values
+    local builtin = require 'telescope.builtin'
+
+    local filetypes = {
+      { name = 'TypeScript', globs = { '*.ts' } },
+      { name = 'HTML', globs = { '*.html' } },
+      { name = 'CSS', globs = { '*.css' } },
+      { name = 'SASS/SCSS', globs = { '*.sass', '*.scss' } },
+    }
+
+    vim.keymap.set('n', '<leader>stf', function()
+      pickers
+        .new({}, {
+          prompt_title = 'Choose filetype for grep',
+          finder = finders.new_table {
+            results = filetypes,
+            entry_maker = function(entry)
+              return {
+                value = entry.globs,
+                display = entry.name,
+                ordinal = entry.name,
+              }
+            end,
+          },
+          sorter = conf.generic_sorter {},
+          attach_mappings = function(_, map)
+            map('i', '<CR>', function(prompt_bufnr)
+              local actions = require 'telescope.actions'
+              local state = require 'telescope.actions.state'
+              local selection = state.get_selected_entry()
+              actions.close(prompt_bufnr)
+
+              builtin.live_grep {
+                prompt_title = 'Grep in ' .. selection.display,
+                additional_args = function()
+                  local args = {}
+                  for _, glob in ipairs(selection.value) do
+                    table.insert(args, '--glob=' .. glob)
+                  end
+                  return args
+                end,
+              }
+            end)
+            return true
+          end,
+        })
+        :find()
+    end, { desc = 'Live grep by filetype (dropdown)' })
 
     -- Slightly advanced example of overriding default behavior and theme
     --  See `:help telescope.builtin.live_grep()` for information about particular keys

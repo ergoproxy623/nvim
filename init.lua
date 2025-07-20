@@ -132,7 +132,6 @@ require('lazy').setup({
   'rebelot/kanagawa.nvim',
   'nvim-treesitter/nvim-treesitter-context',
   'mbbill/undotree',
-  'KabbAmine/vCoolor.vim',
   'gbprod/yanky.nvim',
   'tpope/vim-unimpaired',
   'nvim-treesitter/playground',
@@ -145,6 +144,7 @@ require('lazy').setup({
   'nvim-lua/lsp-status.nvim',
   'SmiteshP/nvim-navic',
   'mfussenegger/nvim-dap',
+  'norcalli/nvim-colorizer.lua',
   'tpope/vim-surround',
   { 'David-Kunz/jester', dap = {
     console = 'externalTerminal',
