@@ -9,11 +9,12 @@ return {
       highlighter = {
         auto_enable = true,
         lsp = true,
+        filetypes = {'css', 'scss'}
       },
     }
 
-    vim.keymap.set('n', '<leader>cp', '<cmd>CccPick<cr>', { desc = '🎨 Color Picker' })
-    vim.keymap.set('n', '<leader>ce', '<cmd>CccConvert<cr>', { desc = '🔁 Convert Color' })
+    vim.keymap.set('n', '<leader>Cp', '<cmd>CccPick<cr>', { desc = '🎨 Color Picker' })
+    vim.keymap.set('n', '<leader>Cc', '<cmd>CccConvert<cr>', { desc = '🔁 Convert Color' })
   end,
   cmd = { 'CccPick', 'CccConvert' },
 }
