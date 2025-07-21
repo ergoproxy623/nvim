@@ -83,6 +83,11 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
+vim.filetype.add({
+  extension = {
+    ['http'] = 'http',
+  },
+})
 require 'config.options'
 require 'config.autocommands'
 require 'config.keymaps'
@@ -129,7 +134,6 @@ require('lazy').setup({
   'AstroNvim/astroui',
   'nvim-lua/plenary.nvim',
   'andweeb/presence.nvim',
-  'rebelot/kanagawa.nvim',
   'nvim-treesitter/nvim-treesitter-context',
   'mbbill/undotree',
   'gbprod/yanky.nvim',
@@ -195,15 +199,6 @@ require('lazy').setup({
     end,
   },
   {
-    'voldikss/vim-translator',
-    cmd = { 'Translate', 'TranslateV', 'TranslateW', 'TranslateWV', 'TranslateR', 'TranslateRV', 'TranslateX' },
-    enabled = false,
-    config = function()
-      vim.g.translator_target_lang = 'zh'
-      vim.g.translator_history_enable = true
-    end,
-  },
-  {
     'antosha417/nvim-lsp-file-operations',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -213,14 +208,7 @@ require('lazy').setup({
       require('lsp-file-operations').setup()
     end,
   },
-  {
-    'max397574/colortils.nvim',
-    cmd = 'Colortils',
-    config = function()
-      require('colortils').setup()
-    end,
-  },
-
+  
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.

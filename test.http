@@ -1,3 +1,5 @@
-@host = http://localhost:5000
+@host = https://jsonplaceholder.typicode.com/
 ### Get all items
-GET {{host}}/itemsme": "John Doe"}
+GET {Shost}}/posts
+
+
