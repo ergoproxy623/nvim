@@ -100,7 +100,7 @@ return {
         sources = {
           { source = 'filesystem', display_name = '  Files ' },
           { source = 'buffers', display_name = '  Buffers ' },
-          { source = 'git_status', display_name = '  Git ' },
+          { source = 'git_status', display_name = '  Git ' },
         },
       },
       tabs = {
@@ -109,7 +109,7 @@ return {
         symbols = {
           filesystem = '',
           buffers = '',
-          git_status = '',
+          git_status = '',
         },
         sort_function = function(a, b)
           -- Simplified check if a path is in the 'notes' directory

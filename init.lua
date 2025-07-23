@@ -83,11 +83,11 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
-vim.filetype.add({
+vim.filetype.add {
   extension = {
     ['http'] = 'http',
   },
-})
+}
 require 'config.options'
 require 'config.autocommands'
 require 'config.keymaps'
@@ -150,6 +150,7 @@ require('lazy').setup({
   'mfussenegger/nvim-dap',
   'norcalli/nvim-colorizer.lua',
   'tpope/vim-surround',
+  'MunifTanjim/nui.nvim',
   { 'David-Kunz/jester', dap = {
     console = 'externalTerminal',
   } },
@@ -208,7 +209,7 @@ require('lazy').setup({
       require('lsp-file-operations').setup()
     end,
   },
-  
+
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -557,7 +558,6 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua',
-        'angular-language-server',
         'chrome-debug-adapter',
         'css-lsp',
         'emmet-ls',
@@ -574,7 +574,7 @@ require('lazy').setup({
 
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
+        automatic_installation = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
