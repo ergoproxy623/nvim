@@ -130,8 +130,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  'AstroNvim/astrocore',
-  'AstroNvim/astroui',
   'nvim-lua/plenary.nvim',
   'andweeb/presence.nvim',
   'nvim-treesitter/nvim-treesitter-context',

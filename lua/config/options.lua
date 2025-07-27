@@ -90,4 +90,4 @@ vim.opt.foldtext = ''
 vim.opt.foldcolumn = '0'
 -- folding end
 --autosave cursor timeout
-vim.o.updatetime = 1500
+vim.o.updatetime = 3000

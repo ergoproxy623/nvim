@@ -58,6 +58,7 @@ return { -- Autocompletion
     luasnip.config.setup {}
     cmp.register_source('angular_selectors', require 'tools.cmp-angular-selectors')
     cmp.register_source('component_scss', require 'tools.cmp-component-css')
+    -- Завантажувач Lua-сніпетів
     cmp.setup {
       snippet = {
         expand = function(args)

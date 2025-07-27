@@ -8,6 +8,11 @@ local function format_and_save()
     if not ok then
       vim.notify('⚠️ Conform not available or formatting failed', vim.log.levels.WARN)
     end
+  end
+end
+local function save()
+  if vim.bo.modified and vim.bo.buftype == '' and not vim.bo.readonly then
+    vim.notify('⚠️ Save on hold', vim.log.levels.WARN) 
     vim.cmd 'silent! write'
   end
 end
@@ -43,7 +48,7 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
 
 vim.api.nvim_create_autocmd('CursorHoldI', {
   group = group,
-  callback = format_and_save,
+  callback = save,
 })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
