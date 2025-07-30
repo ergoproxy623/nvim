@@ -44,6 +44,7 @@ function M.run_npm_script()
               direction = 'vertical',
               size = 80,
               hidden = true,
+              close_on_exit = false,
             }
             term:toggle()
           end

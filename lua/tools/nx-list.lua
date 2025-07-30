@@ -130,6 +130,7 @@ function M.run()
               direction = 'vertical',
               size = 80,
               hidden = true,
+              close_on_exit = false,
             }
             term:toggle()
           end
