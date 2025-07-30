@@ -1,5 +1,17 @@
-@host = https://jsonplaceholder.typicode.com/
-### Get all items
-GET {Shost}}/posts
+@pokemon=pikachu
+@pokemon2=bulbasaur
 
+Gj  https://pokeapi.co/api/v2/pokemon/{{pokemon}} HTTP/1.1
+Accept: application/json
+
+### Some pockemon
+
+GET https://pokeapi.co/api/v2/pokemon/{{pokemon2}} HTTP/1.1
+Accept: application/json
+
+### Curl
+# curl -X 'GET' -v --http1.1 -s -H 'Accept:application/json' -A 'kulala.nvim/5.3.2' 'https://pokeapi.co/api/v2/pokemon/bulbasaur'
+GET https://pokeapi.co/api/v2/pokemon/bulbasaur HTTP/1.1
+accept: application/json
+user-agent: kulala.nvim/5.3.2
 
