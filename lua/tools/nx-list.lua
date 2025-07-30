@@ -61,7 +61,6 @@ local function find_project_json_files(root)
 end
 
 local function get_project_name(project_path)
-  -- Повертає назву проекту як назву директорії, де лежить project.json
   local path_parts = vim.split(project_path, '/')
   return path_parts[#path_parts - 1] or 'unknown'
 end
@@ -122,9 +121,17 @@ function M.run()
         actions.select_default:replace(function()
           actions.close(prompt_bufnr)
           local selection = action_state.get_selected_entry()
+          local Terminal = require('toggleterm.terminal').Terminal
+
           if selection then
             local cmd = 'npx nx run ' .. selection[1]
-            vim.cmd('vsplit | terminal ' .. cmd)
+            local term = Terminal:new {
+              cmd = cmd,
+              direction = 'vertical',
+              size = 80,
+              hidden = true,
+            }
+            term:toggle()
           end
         end)
         return true
