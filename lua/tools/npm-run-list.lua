@@ -38,7 +38,7 @@ function M.run_npm_script()
           local Terminal = require('toggleterm.terminal').Terminal
 
           if selection then
-            local cmd = 'npx nx run ' .. selection[1]
+            local cmd = 'npm run ' .. selection[1]
             local term = Terminal:new {
               cmd = cmd,
               direction = 'vertical',
