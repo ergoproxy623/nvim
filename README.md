@@ -1,39 +1,30 @@
-# astroconfig
-# AstroNvim Template
+# My Neovim configuration
 
-**NOTE:** This is for AstroNvim v4+
+## Requirements
 
-A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
+- general
+  - git
+- lazy.nvim
+  - hererocks
+    - Python 3.x
+    - Windows: [MSVC in $PATH](https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support#msvc)
+- fzf-lua
+  - [rg](https://github.com/BurntSushi/ripgrep)
+  - [fd](https://github.com/sharkdp/fd)
+- nvim-treesitter
+  - Windows: [MSVC in $PATH](https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support#msvc)
+- mason.nvim
+  - [pwsh](https://github.com/PowerShell/PowerShell)
+  - [go](https://github.com/golang/go)
+  - [node](https://github.com/nodejs/node)
+  - Python 3.x
+  - cargo
+    - [rustup](https://rustup.rs/)
+  - Java (open JDK)
+- typescript-tools.nvim
+  - Typescript `npm i -g typescript` (in particular `tsserver`)
+  - The version of `tsserver` included with `ts_ls` on mason.nvim is outdated
 
-## 🛠️ Installation
+## Notes
 
-#### Make a backup of your current nvim and shared folder
-
-```shell
-mv ~/.config/nvim ~/.config/nvim.bak
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
-mv ~/.local/state/nvim ~/.local/state/nvim.bak
-mv ~/.cache/nvim ~/.cache/nvim.bak
-```
-
-#### Create a new user repository from this template
-
-Press the "Use this template" button above to create a new repository to store your user configuration.
-
-You can also just clone this repository directly if you do not want to track your user configuration in GitHub.
-
-#### Clone the repository
-
-```shell
-git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
-```
-
-#### Fix for plenary
-````sell
-sudo pacman -S fd
-````
-#### Start Neovim
-
-```shell
-nvim
-```
+If using wezterm and artifacts are encountered while scrolling, [install the correct terminfo to fix them](https://github.com/wez/wezterm/issues/5750)
