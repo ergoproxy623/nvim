@@ -568,8 +568,68 @@ require('lazy').setup({
         'some-sass-language-server',
         'vtsls',
       })
+
+      local function get_probe_dir(root_dir)
+        local project_root = vim.fs.dirname(vim.fs.find('node_modules', { path = root_dir, upward = true })[1])
+
+        return project_root and (project_root .. '/node_modules') or ''
+      end
+      local function get_angular_core_version(root_dir)
+        local project_root = vim.fs.dirname(vim.fs.find('node_modules', { path = root_dir, upward = true })[1])
+
+        if not project_root then
+          return ''
+        end
+
+        local package_json = project_root .. '/package.json'
+        if not vim.uv.fs_stat(package_json) then
+          return ''
+        end
+
+        local contents = io.open(package_json):read '*a'
+        local json = vim.json.decode(contents)
+        if not json.dependencies then
+          return ''
+        end
+
+        local angular_core_version = json.dependencies['@angular/core']
+
+        angular_core_version = angular_core_version and angular_core_version:match '%d+%.%d+%.%d+'
+
+        return angular_core_version
+      end
+
+      local default_probe_dir = get_probe_dir(vim.fn.getcwd())
+      local default_angular_core_version = get_angular_core_version(vim.fn.getcwd())
+
+      local mason_root = vim.fn.stdpath 'data' .. '/mason/packages/angular-language-server'
+      vim.lsp.config('angularls', {
+        cmd = {
+          'ngserver',
+          '--stdio',
+          '--tsProbeLocations',
+          mason_root .. '/node_modules',
+          '--ngProbeLocations',
+          mason_root .. '/node_modules/@angular/language-server/node_modules',
+          '--angularCoreVersion',
+          default_angular_core_version,
+          '--forceStrictTemplates',
+        },
+        filetypes = {
+          'typescript',
+          'html',
+          'typescriptreact',
+          'typescript.tsx',
+          'htmlangular',
+          'angular',
+          'css',
+          'scss',
+          'sass',
+        },
+      })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      vim.lsp.enable { 'angularls' }
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = true,
