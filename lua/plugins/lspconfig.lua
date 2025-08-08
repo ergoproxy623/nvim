@@ -87,7 +87,7 @@ return {
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        map('<leader>cr', vim.lsp.buf.rename, 'rename')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
@@ -237,20 +237,6 @@ return {
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
             -- diagnostics = { disable = { 'missing-fields' } },
           },
-        },
-      },
-      angularls = {
-        root_dir = util.root_pattern('angular.json', 'workspace.json', 'nx.json', 'project.json', '.git'),
-        filetypes = {
-          'typescript',
-          'html',
-          'typescriptreact',
-          'typescript.tsx',
-          'htmlangular',
-          'angular',
-          'css',
-          'scss',
-          'sass',
         },
       },
       emmet_ls = {

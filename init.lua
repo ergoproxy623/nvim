@@ -139,7 +139,6 @@ require('lazy').setup({
   'nvim-treesitter/playground',
   'ergoproxy623/nvim-http',
   'tpope/vim-surround',
-  'dlvandenberg/tree-sitter-angular',
   'max397574/better-escape.nvim',
   'vim-test/vim-test',
   'davidmh/cspell.nvim',
